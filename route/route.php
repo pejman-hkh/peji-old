@@ -14,8 +14,6 @@ function pageNotFount() {
 	return Peji\View::render('404');
 }
 
-
-
 Router::setPath( getPath() );
 
 Router::route('admin/{controller?}/{action?}/{id?}', function( $controller = 'index', $action = 'index', $id = 0 ) {

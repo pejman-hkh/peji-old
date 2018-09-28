@@ -7,11 +7,11 @@ class View extends Singleton {
 	private $dir;
 
 	protected function setDir( $dir ) {
-		$this->dir = $dir;
+		$this->mainDir = $dir;
 	}
 
 	private function resetAll() {
-		$this->dir = '';
+		$this->mainDir = '';
 		$this->set = [];
 	}
 
@@ -22,7 +22,7 @@ class View extends Singleton {
 			$this->$k = $v;
 		}
 
-		include( $this->dir.'/'.$layout.'.html' );
+		include( $this->mainDir.'/'.$layout.'.html' );
 
 		$this->resetAll();
 	}
@@ -36,6 +36,6 @@ class View extends Singleton {
 	}
 
 	protected function fetch( $dir ) {
-		include( $this->dir.'/'.$dir.'.html' );
+		include( $this->mainDir.'/'.$this->set['dir'].'/'.$dir.'.html' );
 	}
 }

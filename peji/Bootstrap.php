@@ -11,6 +11,7 @@ class Bootstrap extends Singleton {
 		if( App::call( $nController, $action, [ $id ] ) ) {
 			
 			$get = $nController::get();
+			$get['dir'] = $dir;
 			$get['controller'] = $controller;
 			$get['action'] = $action;
 			$get['id'] = $id;
