@@ -3,8 +3,9 @@
 namespace App\Controller\User;
 
 use App\Controller\baseController;
+use App\Controller\User\appController as appController;
 
-class testController extends baseController {
+class testController extends appController {
 
 	function index() {
 		echo "In test index method";

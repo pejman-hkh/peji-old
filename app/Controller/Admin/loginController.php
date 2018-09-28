@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\baseController;
+use App\Controller\Admin\appController as appController;
 
-class loginController extends baseController {
+class loginController extends appController {
 
 	protected function getLayout() {
 		return 'login';

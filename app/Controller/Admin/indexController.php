@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\baseController;
+use App\Controller\Admin\appController as appController;
 
-class indexController extends baseController {
+class indexController extends appController {
 
 	protected function before() {
 		$this->set( 'mainTitle', 'Admin' );

@@ -2,10 +2,10 @@
 
 namespace App\Controller\User;
 
-use App\Controller\baseController;
+use App\Controller\User\appController as appController;
 use App\Model\Users as Users;
 
-class indexController extends baseController {
+class indexController extends appController {
 
 	protected function before() {
 		$this->set( 'mainTitle', 'Admin' );

@@ -8,6 +8,7 @@ class Bootstrap extends Singleton {
 
 		$nController = "App\Controller\\".ucfirst($dir)."\\{$controller}Controller";
 		
+		App::call( $nController, 'beforeApp' ) ;
 		App::call( $nController, 'before' ) ;
 
 		if( App::call( $nController, $action, [ $id ] ) ) {
