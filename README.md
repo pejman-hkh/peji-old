@@ -1,5 +1,5 @@
-# peji
-simple php framework
+# Peji framework
+Mini php framework
 
 # Installation
 
