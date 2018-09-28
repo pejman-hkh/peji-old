@@ -3,7 +3,6 @@ namespace Peji;
 use Pejman\Singleton;
 
 class Controller extends Singleton {
-
 	protected $set;
 
 	protected function set( $key, $val = [] ) {

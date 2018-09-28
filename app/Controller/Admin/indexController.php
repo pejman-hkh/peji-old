@@ -6,8 +6,17 @@ use App\Controller\baseController;
 
 class indexController extends baseController {
 
+	protected function before() {
+		$this->set( 'mainTitle', 'Admin' );
+	}
+
 	protected function index() {
-		//echo " in admin ";
+		$this->set( [ 'title' => 'Dashboard' ] );
+
+	}
+
+	protected function after() {
+	
 	}
 }
 

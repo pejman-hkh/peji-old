@@ -7,12 +7,21 @@ use App\Model\Users as Users;
 
 class indexController extends baseController {
 
+	protected function before() {
+		$this->set( 'mainTitle', 'Admin' );
+	}
+
 	protected function index() {
 
-		$this->set( [ 'title' => 'test ast'] );
+		$this->set( [ 'title' => 'Dashboard'] );
 
 		$this->set( 'loop', Users::pagination()->row() );
 	}
+
+	protected function after() {
+	
+	}
+
 }
 
 ?>

@@ -7,6 +7,8 @@ class Bootstrap extends Singleton {
 	function start( $dir, $controller, $action, $id ) {
 
 		$nController = "App\Controller\\".ucfirst($dir)."\\{$controller}Controller";
+		
+		App::call( $nController, 'before' ) ;
 
 		if( App::call( $nController, $action, [ $id ] ) ) {
 			
@@ -21,6 +23,8 @@ class Bootstrap extends Singleton {
 			View::setDir( '../view' );
 			View::set( $get );
 			View::render( $dir.'/base/'.(@$nController::getLayout()?:'index') );
+
+			App::call( $nController, 'after' ) ;
 
 			return true;
 		}
