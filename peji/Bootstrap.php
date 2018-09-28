@@ -14,19 +14,18 @@ class Bootstrap extends Singleton {
 			$get['controller'] = $controller;
 			$get['action'] = $action;
 			$get['id'] = $id;
+			$get['baseUrl'] = baseUrl;
 
+		
 			View::setDir( '../view' );
 			View::set( $get );
-			View::render( $dir.'/base/index' );
+			View::render( $dir.'/base/'.(@$nController::getLayout()?:'index') );
 
 			return true;
 		}
 
 		return false;
-
 	}
-
 }
-
 
 ?>
