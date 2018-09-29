@@ -3,6 +3,22 @@ namespace Peji;
 use Pejman\Singleton;
 
 class App extends Singleton {
+	protected function domain() {
+		return Request::server('HTTP_HOST');
+	}
+
+	protected function key() {
+		$keyFile = '../cache/key.php';
+		if( ! file_exists( $keyFile ) ) {
+			$key =  md5(rand(0,9999999));
+
+			file_put_contents( $keyFile, '<?php return "'.$key.'"?>' );
+
+			return $key;
+		}
+
+		return include( $keyFile );
+	}
 
 	function call( $class, $method, $args = [] ) {
 		if( class_exists( $class ) && method_exists( $class, $method ) ) {
