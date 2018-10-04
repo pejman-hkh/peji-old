@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "pejman/php-pdo-wrapper": "^2.2",
+        "pejman/php-pdo-wrapper": "^2.3",
         "pejman/router": "^1.0"
     },
     "autoload": {

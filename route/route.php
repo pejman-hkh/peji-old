@@ -1,5 +1,6 @@
 <?php
 use Pejman\Router as Router;
+use Peji\View as View;
 
 function getPath() {
 	$appDir = str_replace( "public_html/index.php", "", $_SERVER['PHP_SELF'] );
@@ -10,8 +11,8 @@ function getPath() {
 }
 
 function pageNotFount() {
-	Peji\View::setDir( '../view' );
-	return Peji\View::render('404');
+	View::setDir( '../view' );
+	return View::render('404');
 }
 
 Router::setPath( getPath() );

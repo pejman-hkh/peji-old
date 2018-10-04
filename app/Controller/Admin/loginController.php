@@ -1,29 +1,27 @@
 <?php
-
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\appController as appController;
-use Peji\Request as Request;
+
+
+use \App\Model\adminAuthorize as Authorize;
 
 class loginController extends appController {
 
-	var $noAuthorize = true;
+	public $noAuthorize = true;
+	public static $layout = 'login';
 
-	protected function getLayout() {
-		return 'login';
-	}
-	
 	protected function index() {
-		$post = Request::post();
 
-		if( count( $post ) > 0  ) {
+		//Authorize::create( [ 'username' => 'admin', 'password' => Authorize::encrypt('admin') ] );
+
+		if( @count( $this->post ) > 0  ) {
 			
-			if( Authorize::login( $post['username'], $post['password'], $post['remember'] ) ) {
+			if( Authorize::login( $this->post['username'], $this->post['password'], @$this->post['remember'] ) ) {
 				return $this->flash('Ok', 1 );
 			}
 
 			return $this->flash('Fail');
-
 		}
 	}
 }

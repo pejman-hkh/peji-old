@@ -15,7 +15,7 @@ class indexController extends appController {
 
 		$this->set( [ 'title' => 'Dashboard'] );
 
-		$this->set( 'loop', Users::pagination()->row() );
+		$this->set( 'loop', Users::paginate(10)->row() );
 	}
 
 	protected function after() {

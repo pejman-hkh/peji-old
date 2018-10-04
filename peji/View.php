@@ -1,6 +1,5 @@
 <?php
 namespace Peji;
-use Pejman\Singleton;
 
 class View extends Singleton {
 	private $set = [];

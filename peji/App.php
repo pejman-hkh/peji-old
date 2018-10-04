@@ -1,6 +1,5 @@
 <?
 namespace Peji;
-use Pejman\Singleton;
 
 class App extends Singleton {
 	protected function domain() {

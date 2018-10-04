@@ -1,6 +1,5 @@
 <?
 namespace Peji;
-use Pejman\Singleton;
 
 class Bootstrap extends Singleton {
 
@@ -23,7 +22,7 @@ class Bootstrap extends Singleton {
 		
 			View::setDir( '../view' );
 			View::set( $get );
-			View::render( $dir.'/base/'.(@$nController::getLayout()?:'index') );
+			View::render( $dir.'/base/'.(isset($nController::$layout)?$nController::$layout:'index') );
 
 			App::call( $nController, 'after' ) ;
 

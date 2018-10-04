@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\appController as appController;
-
+use App\Model\Posts as Posts;
 
 class postController extends appController {
 
@@ -13,6 +13,8 @@ class postController extends appController {
 
 	protected function index() {
 		$this->set( [ 'title' => 'List' ] );
+
+		$this->set( 'loop', Posts::paginate(10)->row() );
 
 	}
 

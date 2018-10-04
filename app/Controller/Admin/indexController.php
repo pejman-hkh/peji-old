@@ -13,6 +13,7 @@ class indexController extends appController {
 	protected function index() {
 		$this->set( [ 'title' => 'Dashboard' ] );
 
+
 	}
 
 	protected function after() {

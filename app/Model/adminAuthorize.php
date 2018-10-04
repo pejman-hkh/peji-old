@@ -1,22 +1,29 @@
 <?php
 namespace App\Model;
-session_start();
 use Pejman\Singleton;
 use Pejman\Model as Model;
+use Peji\App as App;
 use Peji\Session as Session;
 use Peji\Cookie as Cookie;
+use Peji\Request as Request;
+
 
 class adminAuthorize extends Model {
-	var $table = 'pa_users';
+	var $table = 'users';
 
     protected function sessionAgent() {
-        return md5( App::key().$this->server['REMOTE_ADDR'].App::key().$this->server['HTTP_USER_AGENT'].App::key() );
+    	$server = Request::server();
+        return md5( App::key().$server['REMOTE_ADDR'].App::key().$server['HTTP_USER_AGENT'].App::key() );
+    }
+
+    protected function encrypt( $str ) {
+    	return md5( sha1( $str.App::key().$str ) );
     }
 
 	protected function login( $username, $password, $remember = false ) {
 		
-		$fetch = $this->where( [ 'username = ? ', 'password = ? ', "status = '1'" ] )->findOne([ $username, $password ]);
-		if( count( $fetch ) > 0 ) {
+		$fetch = $this->where( [ 'username = ? ', 'password = ? ', "active = '1'" ] )->findOne([ $username, $this->encrypt( $password ) ]);
+		if( @count( $fetch ) > 0 ) {
 			$session = md5( $username.$password );
 			$agent = $this->sessionAgent();
 	
@@ -41,13 +48,13 @@ class adminAuthorize extends Model {
 	protected function check() {
 		$agent = Session::get( 'adminAgent' );
 		if( ! empty( $agent ) && $agent === $this->sessionAgent() ) {
-			$this->User = $this->where( [ 'id = ?', "status = '1'" ] )->findOne([ Session::get('adminId') ]);
+			$this->User = $this->where( [ 'id = ?', "active = '1'" ] )->findOne([ Session::get('adminId') ]);
 			return true;
 		}
 
 		$cookie = Cookie::get('adminLogin');
 		if( ! empty( $cookie ) ) {
-			$this->User = $this->where( [ 'cookie = ?', "status = '1'" ] )->findOne([ $cookie ]);
+			$this->User = $this->where( [ 'cookie = ?', "active = '1'" ] )->findOne([ $cookie ]);
 			return true;
 		}
 

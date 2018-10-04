@@ -1,6 +1,5 @@
 <?php
 namespace Peji;
-use Pejman\Singleton;
 
 class Cookie extends Singleton {
 

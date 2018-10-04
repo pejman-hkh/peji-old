@@ -1,6 +1,5 @@
 <?php
 namespace Peji;
-use Pejman\Singleton;
 
 class Request extends Singleton {
 
