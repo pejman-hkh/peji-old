@@ -13,4 +13,5 @@ class Singleton {
 	public static function __callStatic($method, $args) {
     	return call_user_func_array( array( Singleton::getInstance( get_called_class() ), $method ), $args );
     }
+
 }

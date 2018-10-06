@@ -1,0 +1,85 @@
+    <form class="ajax" method="post" action="">
+		<div class="row">
+			<div class="col-sm-8">
+          <div class="card">
+            <div class="card-header">
+              <strong><?=$this->mainTitle?></strong>
+              <small><?=$this->title?></small>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="name">Title</label>
+                    <input class="form-control" name="title" type="text" placeholder="Title">
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="name">Url</label>
+                    <input class="form-control" name="url" type="text" placeholder="Url">
+                  </div>
+
+
+                </div>
+              </div>
+
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-primary" type="submit">
+                <i class="fa fa-dot-circle-o"></i> Submit</button>
+              <button class="btn btn-sm btn-danger" type="reset">
+                <i class="fa fa-ban"></i> Reset</button>
+            </div>          
+          </div>
+      </div>
+      <div class="col-sm-4">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#detail" role="tab" aria-controls="detail">Detail</a></li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#setting" role="tab" aria-controls="setting">Settings</a></li>
+      
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="detail" role="tabpanel">
+                  <div class="form-group">
+
+                    <select class="form-control">
+                      <option>Place</option>
+           
+                    </select>
+                  </div> 
+
+                  <div class="form-group">
+
+                    <select class="form-control">
+                      <option>Parent</option>
+           
+                    </select>
+                  </div> 
+
+                  <div class="form-group">
+
+                    <select class="form-control">
+                      <option>Open in</option>
+                    </select>
+                  </div> 
+
+                  <div class="form-group">
+                 
+                    <input class="form-control" name="icon" type="text" placeholder="Icon">
+                  </div> 
+
+
+            </div>
+            <div class="tab-pane" id="setting" role="tabpanel">
+                <div class="form-check checkbox">
+                  <label class="form-check-label">  <input class="form-check-input" name="config[]" type="checkbox" value="1" checked> Active</label>
+                </div> 
+           
+            </div>
+
+          </div>
+        </div>
+      </div>
+		</div>
+    </form>

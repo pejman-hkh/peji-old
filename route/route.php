@@ -11,7 +11,11 @@ function getPath() {
 }
 
 function pageNotFount() {
-	View::setDir( '../view' );
+
+	$get = [];
+	$get['baseUrl'] = baseUrl;
+
+	View::set( $get );
 	return View::render('404');
 }
 

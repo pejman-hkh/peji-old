@@ -9,15 +9,24 @@ class appController extends baseController {
 
 	protected function beforeApp() {
 
-		$this->post = Request::post();
-
-		if( ! @$this->noAuthorize && ! Authorize::check() ) {
-			
-			header("Location: ".baseUrl."admin/login?r=".getPath() );
-			exit();
+		if( ! @$this->noAuthorize ) {
+			if(  ! Authorize::check() ) {
+				header("Location: ".baseUrl."admin/login?r=".getPath() );
+				exit();
+			} else {
+				$this->afterLogin();				
+			}
 		}
+	}
 
-		$this->set('menu', include('../config/menu.php') );		
+	private function afterLogin() {
+
+		//\Peji\Lang::set('fa');
+
+		$this->admin = Authorize::getUser();
+		$this->set( 'admin', $this->admin );
+
+		$this->set('menu', include('../config/menu.php') );			
 	}
 }
 

@@ -18,11 +18,15 @@ class loginController extends appController {
 		if( @count( $this->post ) > 0  ) {
 			
 			if( Authorize::login( $this->post['username'], $this->post['password'], @$this->post['remember'] ) ) {
-				return $this->flash('Ok', 1 );
+				return $this->flash('Successfully', 1 );
 			}
 
-			return $this->flash('Fail');
+			return $this->flash('Fail to login, username or passwrod wrong !');
 		}
+	}
+
+	protected function logout() {
+		Authorize::logout();
 	}
 }
 

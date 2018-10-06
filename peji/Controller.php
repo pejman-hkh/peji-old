@@ -3,6 +3,9 @@ namespace Peji;
 
 class Controller extends Singleton {
 	protected $set;
+	protected function setKey( $key, $val ) {
+		$this->$key = $val;
+	}
 
 	protected function set( $key, $val = [] ) {
 		if( is_array( $key ) ) {

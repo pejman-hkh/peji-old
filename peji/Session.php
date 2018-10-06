@@ -10,6 +10,10 @@ class Session extends Singleton {
 	protected function set( $key, $val ) {
 		$_SESSION[ $key ] = $val;
 	}
+
+	protected function unset( $key ) {
+		unset( $_SESSION[ $key ] );
+	}
 }
 
 

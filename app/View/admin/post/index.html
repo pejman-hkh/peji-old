@@ -1,0 +1,65 @@
+<?
+use Peji\Date as Date;
+?><div class="row">
+  <!-- /.col-->
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> <?=$this->mainTitle?> <?=$this->title?></div>
+      <div class="card-body">
+
+        <form action="">
+        <div class="form-group row">
+          <div class="col-md-4">
+            <div class="input-group">
+              <input class="form-control" name="search" type="text" placeholder="Search">
+              <span class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </span>
+            </div>
+          </div>
+        </div>
+        </form>
+
+        <?if( $this->loop->count() > 0 ) { ?>
+        <table class="table table-responsive-sm table-striped">
+          <thead>
+            <tr>
+              <th><input type="checkbox" class="check-all" /></th>
+              <th>Title</th>
+              <th>Url</th>
+              <th>Date</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <?
+            $this->loop->find(function( $fetch ) {
+            ?>
+            <tr>
+              <td><input type="checkbox" name="id[]" value="<?=$v['id']?>" /></td>
+              <td><?=$fetch['title']?></td>
+              <td><a href="<?=$this->baseUrl?><?=$fetch['url']?>" target="_blank"><?=$fetch['url']?></a></td>
+              <td><?=Date::show('Y/m/d H:i', $fetch['date'])?></td>
+              <td>
+                <a href="<?=$this->baseUrl?>admin/<?=$this->controller?>/edit/<?=$fetch['id']?>"><i class="fa fa-edit fa-lg text-primary"></i></a>
+              </td>
+            </tr>
+            <?
+            });
+
+            ?>
+
+          </tbody>
+        </table>
+
+        <?$this->fetch('feature/paginate');?>
+        <? } else { ?>
+          <div class="alert alert-danger">Result not found</div>
+        <? } ?>
+      </div>
+    </div>
+  </div>
+  <!-- /.col-->
+</div>

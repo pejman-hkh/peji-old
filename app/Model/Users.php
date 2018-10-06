@@ -1,9 +1,7 @@
 <?php
 namespace App\Model;
 
-use Pejman\Model as Model;
-
-class Users extends Model {
+class Users extends baseModel {
 	protected $table = "users";
 }
 

@@ -1,14 +1,13 @@
 <?php
 namespace App\Model;
-use Pejman\Singleton;
-use Pejman\Model as Model;
+
 use Peji\App as App;
 use Peji\Session as Session;
 use Peji\Cookie as Cookie;
 use Peji\Request as Request;
 
 
-class adminAuthorize extends Model {
+class adminAuthorize extends baseModel {
 	var $table = 'users';
 
     protected function sessionAgent() {
@@ -18,6 +17,13 @@ class adminAuthorize extends Model {
 
     protected function encrypt( $str ) {
     	return md5( sha1( $str.App::key().$str ) );
+    }
+
+    protected function logout() {
+    	Session::unset('adminId');
+    	Session::unset('adminAgent');
+
+    	Cookie::unset('adminLogin');
     }
 
 	protected function login( $username, $password, $remember = false ) {
@@ -62,7 +68,7 @@ class adminAuthorize extends Model {
 	}
 
 	protected function getUser() {
-		if( ! $this->User ) {
+		if( ! @$this->User ) {
 			$this->User = $this->check();
 		}
 

@@ -9,8 +9,14 @@ class Cookie extends Singleton {
 
 	protected function set( $key, $val, $day = 1, $path = '/', $domain = '', $secure = false, $httponly = true ) {
 		$domain = $domain?:App::domain();
-		setcookie($key,$val, $day * 3600 * 24, $path, $domain, $secure, $httponly);
+
+		setcookie($key,$val, time() + ($day * 3600 * 24), $path, $domain, $secure, $httponly);
 	}
+
+	protected function unset( $key ) {
+		unset( $_COOKIE[ $key ] );
+	}	
+
 }
 
 

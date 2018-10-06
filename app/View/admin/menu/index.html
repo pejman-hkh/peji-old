@@ -1,0 +1,47 @@
+            <div class="row">
+              <!-- /.col-->
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-header">
+                    <i class="fa fa-align-justify"></i> <?=$this->mainTitle?> <?=$this->title?></div>
+                  <div class="card-body">
+                    <?if( $this->loop->count() > 0 ) { ?>
+                    <table class="table table-responsive-sm table-striped">
+                      <thead>
+                        <tr>
+                          <th>Title</th>
+                          <th>Url</th>
+                          <th>Date</th>
+                          <th>Edit</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <?
+                        $this->loop->find(function( $fetch ) {
+                        ?>
+                        <tr>
+                          <td><?=$fetch['name']?></td>
+                          <td>2012/01/01</td>
+                          <td>Member</td>
+                          <td>
+                            <span class="badge badge-success">Active</span>
+                          </td>
+                        </tr>
+                        <?
+                        });
+
+                        ?>
+
+                      </tbody>
+                    </table>
+
+                    <?$this->fetch('feature/paginate');?>
+                    <? } else { ?>
+                      <div class="alert alert-danger">Result not found</div>
+                    <? } ?>
+                  </div>
+                </div>
+              </div>
+              <!-- /.col-->
+            </div>
