@@ -1,5 +1,5 @@
 <?php
-use Pejman\Router as Router;
+use Peji\Router as Router;
 use Peji\View as View;
 
 function getPath() {

@@ -13,7 +13,7 @@ class menuController extends appController {
 	}
 
 	protected function index() {
-		$this->set( [ 'title' => 'List' ] );
+		$this->set( 'title', 'List' );
 
 		$this->set( 'loop', Menus::paginate(10)->row() );
 		$this->set( 'pagination', Menus::getPaginate() );
@@ -21,7 +21,7 @@ class menuController extends appController {
 	}
 
 	protected function add() {
-		$this->set( [ 'title' => 'Add' ] );
+		$this->set( 'title', 'Add' );
 
 	}
 

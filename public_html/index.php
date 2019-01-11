@@ -2,7 +2,7 @@
 session_start();
 require_once __DIR__.'/../vendor/autoload.php';
 
-use Pejman\DB as DB;
+use Peji\DB as DB;
 use Peji\Config as Config;
 use Peji\View as View;
 
@@ -17,6 +17,24 @@ DB::setAttr([
 	\PDO::ATTR_PERSISTENT => false ,
 	\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true ,
 ]);
+
+/*$find = DB::sql("select * from posts order by id desc ")->paginate(5, 2)->find();
+print_r( $find );
+
+print_r( DB::getPagination() );
+
+
+exit();
+
+
+
+$id = DB::table("posts")->insert(['title' => 'test']);
+print_r( $id );
+
+DB::table("posts")->where(['id' => 2 ])->update(['title' => 'aaaaa']);
+
+exit();
+*/
 
 View::setDir( '../app/View' );
 

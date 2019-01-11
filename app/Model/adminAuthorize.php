@@ -27,7 +27,7 @@ class adminAuthorize extends baseModel {
     }
 
 	protected function login( $username, $password, $remember = false ) {
-		
+
 		$fetch = $this->where( [ 'username = ? ', 'password = ? ', "active = '1'" ] )->findOne([ $username, $this->encrypt( $password ) ]);
 		if( @count( $fetch ) > 0 ) {
 			$session = md5( $username.$password );

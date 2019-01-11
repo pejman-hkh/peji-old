@@ -14,11 +14,13 @@ class postController extends appController {
 	protected function index() {
 		$this->set( 'title', 'List' );
 
-		$this->set( 'loop', Posts::leftJoin("users", "posts.adminid = users.id")->searchKey([ 
+		$this->set( 'loop', $loop = Posts::field("posts.id, posts.title, posts.url, posts.date")->leftJoin("users", "posts.adminid = users.id")->searchKey([ 
 			[ 'title', 'posts.title', '%LIKE%' ] 
 		])->search(['posts.title', 'posts.url' ])->paginate(10)->row() );
 
 		$this->set( 'pagination', Posts::getPaginate() );
+
+
 	}
 
 	private function feature() {

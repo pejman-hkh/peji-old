@@ -1,12 +1,7 @@
 <?php
 namespace App\Model;
-use Pejman\DB as DB;
-use Pejman\Model as Model;
-use Pejman\Where as Where;
-
-class baseWhere extends Where {
-
-}
+use Peji\DB as DB;
+use Peji\Model as Model;
 
 class baseModel extends Model {
 

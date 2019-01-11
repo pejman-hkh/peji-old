@@ -11,7 +11,7 @@ class indexController extends appController {
 	}
 
 	protected function index() {
-		$this->set( [ 'title' => 'Dashboard' ] );
+		$this->set( 'title', 'Dashboard' );
 
 
 	}

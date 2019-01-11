@@ -7,20 +7,7 @@ use Peji\Date as Date;
       <div class="card-header">
         <i class="fa fa-align-justify"></i> <?=$this->mainTitle?> <?=$this->title?></div>
       <div class="card-body">
-
-        <form action="">
-        <div class="form-group row">
-          <div class="col-md-4">
-            <div class="input-group">
-              <input class="form-control" name="search" type="text" placeholder="Search">
-              <span class="input-group-append">
-                <button class="btn btn-primary" type="submit">Search</button>
-              </span>
-            </div>
-          </div>
-        </div>
-        </form>
-
+        <?=$this->fetch('feature/searchList');?>
         <?if( $this->loop->count() > 0 ) { ?>
         <table class="table table-responsive-sm table-striped">
           <thead>

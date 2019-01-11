@@ -2,8 +2,6 @@
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\appController as appController;
-
-
 use \App\Model\adminAuthorize as Authorize;
 
 class loginController extends appController {
@@ -27,6 +25,10 @@ class loginController extends appController {
 
 	protected function logout() {
 		Authorize::logout();
+	}
+
+	protected function forget() {
+
 	}
 }
 
