@@ -12,7 +12,8 @@ class queryBuilder {
 	}
 
 	public function setParams( $array = [] ) {
-		$this->params = array_merge($this->params, $array );
+		if( is_array( $array ) )
+			$this->params = array_merge($this->params, $array );
 	}
 
 
@@ -93,6 +94,7 @@ class queryBuilder {
 				$this->params = array_values( $key );
 
 		}
+
 
 		return $this;
 	}

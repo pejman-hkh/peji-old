@@ -83,6 +83,7 @@ class DB extends Singleton {
 	}
 
 	private function run() {
+
 		return $this->db->prepare( $this->QB->getSql() )->execute( $this->QB->getParams() );
 	}
 

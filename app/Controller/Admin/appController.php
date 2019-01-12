@@ -7,7 +7,7 @@ use Peji\Request as Request;
 
 class appController extends baseController {
 
-	protected function beforeApp() {
+	public function beforeApp() {
 
 		if( ! @$this->noAuthorize ) {
 			if(  ! Authorize::check() ) {

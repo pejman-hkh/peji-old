@@ -3,22 +3,23 @@
 namespace App\Controller\User;
 
 use App\Controller\User\appController as appController;
-use App\Model\Users as Users;
+use App\Model\Users;
 
 class indexController extends appController {
 
-	protected function before() {
-		$this->set( 'mainTitle', 'Admin' );
+	public function before() {
+
 	}
 
-	protected function index() {
+	public function index() {
 
-		$this->set( [ 'title' => 'Dashboard'] );
+		$this->set( [ 'title' => 'Title'] );
 
 		$this->set( 'loop', Users::paginate(10)->row() );
+
 	}
 
-	protected function after() {
+	public function after() {
 	
 	}
 

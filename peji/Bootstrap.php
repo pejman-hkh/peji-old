@@ -16,22 +16,27 @@ class Bootstrap extends Singleton {
 		$get['post'] = Request::post();
 		$get['server'] = Request::server();
 
+		
+
 		if( class_exists( $nController ) ) {
+			$nControllerObject = new $nController();
 			foreach( $get as $k => $v ) {
-				$nController::setKey( $k, $v );
+				$nControllerObject->setKey( $k, $v );
 			}
+		} else {
+			return false;
 		}
 
-		App::call( $nController, 'beforeApp' ) ;
-		App::call( $nController, 'before' ) ;
+		App::call( $nControllerObject, 'beforeApp' ) ;
+		App::call( $nControllerObject, 'before' ) ;
 
-		if( App::call( $nController, $action, [ $id ] ) ) {
+		if( App::call( $nControllerObject, $action, [ $id ] ) ) {
 	
-			$get += (array)$nController::get();
+			$get += (array)$nControllerObject->get();
 
 			View::set( $get );
-			View::render( $dir.'/base/'.(isset($nController::$layout)?$nController::$layout:'index') );
-			App::call( $nController, 'after' ) ;
+			View::render( $dir.'/base/'.(isset($nControllerObject->layout)?$nControllerObject->layout:'index') );
+			App::call( $nControllerObject, 'after' ) ;
 
 			return true;
 		}

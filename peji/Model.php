@@ -17,6 +17,9 @@ class Model extends Singleton {
 	}
 
 	protected function find( $arr = [] ) {
+		if( is_numeric($arr) ) {
+			return DB::select( $this->table )->where(['id' => $arr ])->findOne( $arr );
+		}
 		return DB::select( $this->table )->find( $arr );
 	}
 
@@ -35,6 +38,10 @@ class Model extends Singleton {
 
 	protected function where( $key, $op = "AND", $value = "" ) {
 		return DB::select( $this->table )->where( $key, $op, $value );
+	}
+
+	protected function row() {
+		return DB::select( $this->table )->row();
 	}
 
 	protected function getPaginate() {

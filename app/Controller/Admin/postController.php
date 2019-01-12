@@ -7,11 +7,11 @@ use Peji\Config as Config;
 
 class postController extends appController {
 
-	protected function before() {
+	public function before() {
 		$this->set( 'mainTitle', 'Posts' );
 	}
 
-	protected function index() {
+	public function index() {
 		$this->set( 'title', 'List' );
 
 		$this->set( 'loop', $loop = Posts::field("posts.id, posts.title, posts.url, posts.date")->leftJoin("users", "posts.adminid = users.id")->searchKey([ 
@@ -27,7 +27,7 @@ class postController extends appController {
 		$this->set('loopKind', Config::file('postKind') );
 	}
 
-	protected function add() {
+	public function add() {
 		$this->set( 'title', 'Add' );
 		$this->feature();
 
@@ -61,7 +61,7 @@ class postController extends appController {
 		}
 	}
 
-	protected function edit( $id = '' ) {
+	public function edit( $id = '' ) {
 		$this->feature();
 		$fetch = Posts::find( $id );
 
@@ -69,12 +69,12 @@ class postController extends appController {
 		$this->set( 'assign', $fetch );
 	}
 
-	protected function search() {
+	public function search() {
 		$this->set( 'title', 'Search' );
 
 	}
 	
-	protected function remove() {
+	public function remove() {
 	}
 }
 

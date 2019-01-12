@@ -1,22 +1,20 @@
 <?php
-
 namespace App\Controller\Admin;
-
 use App\Controller\Admin\appController as appController;
 
 class indexController extends appController {
 
-	protected function before() {
+	public function before() {
 		$this->set( 'mainTitle', 'Admin' );
 	}
 
-	protected function index() {
+	public function index() {
 		$this->set( 'title', 'Dashboard' );
 
 
 	}
 
-	protected function after() {
+	public function after() {
 	
 	}
 }

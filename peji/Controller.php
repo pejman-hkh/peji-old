@@ -2,12 +2,12 @@
 namespace Peji;
 
 class Controller extends Singleton {
-	protected $set;
-	protected function setKey( $key, $val ) {
+	public $set;
+	public function setKey( $key, $val ) {
 		$this->$key = $val;
 	}
 
-	protected function set( $key, $val = [] ) {
+	public function set( $key, $val = [] ) {
 		if( is_array( $key ) ) {
 			foreach( $key as $k => $v ) {
 				$this->set[ $k ] = $v;
@@ -17,7 +17,7 @@ class Controller extends Singleton {
 		}
 	}
 
-	protected function get() {
+	public function get() {
 		return $this->set;
 	}
 }

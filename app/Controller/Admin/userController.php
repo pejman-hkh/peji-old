@@ -7,21 +7,21 @@ use App\Model\Users as Users;
 
 class userController extends appController {
 
-	protected function before() {
+	public function before() {
 		$this->set( 'mainTitle', 'Users' );
 	}
 
-	protected function index() {
+	public function index() {
 		$this->set( 'title', 'List' );
 
 
 	}
 
-	protected function add() {
+	public function add() {
 		$this->set( 'title', 'Add' );
 	}
 
-	protected function search() {
+	public function search() {
 		$this->set( 'title', 'Search' );
 	}
 

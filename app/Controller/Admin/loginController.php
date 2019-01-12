@@ -7,9 +7,9 @@ use \App\Model\adminAuthorize as Authorize;
 class loginController extends appController {
 
 	public $noAuthorize = true;
-	public static $layout = 'login';
+	public $layout = 'login';
 
-	protected function index() {
+	public function index() {
 
 		//Authorize::create( [ 'username' => 'admin', 'password' => Authorize::encrypt('admin') ] );
 
@@ -23,11 +23,11 @@ class loginController extends appController {
 		}
 	}
 
-	protected function logout() {
+	public function logout() {
 		Authorize::logout();
 	}
 
-	protected function forget() {
+	public function forget() {
 
 	}
 }
