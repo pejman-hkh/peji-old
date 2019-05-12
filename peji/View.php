@@ -4,7 +4,7 @@ namespace Peji;
 class View extends Singleton {
 	private $set = [];
 	private $dir;
-
+	
 	protected function setDir( $dir ) {
 		$this->mainDir = $dir;
 	}

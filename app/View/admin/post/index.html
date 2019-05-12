@@ -22,7 +22,8 @@ use Peji\Date as Date;
           <tbody>
 
             <?
-            $this->loop->find(function( $fetch ) {
+            $this->loop->find(function( $res ) {
+            $fetch = $res->item;
             ?>
             <tr>
               <td><input type="checkbox" name="id[]" value="<?=$v['id']?>" /></td>

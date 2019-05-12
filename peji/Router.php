@@ -43,7 +43,7 @@ class Router extends Singleton {
 
 	public function checkUrl( $uri, $wa, $extension = array() ) {
 
-		$pathArr = explode( "/", $this->path );
+		$pathArr = $this->pathArr = explode( "/", $this->path );
 		
 		$last = $pathArr [ count( $pathArr ) - 1 ];
 		$expLast = explode(".", $last);
@@ -70,10 +70,8 @@ class Router extends Singleton {
 		}
 			
 		$this->getExten = isset( $expLast[1] ) ? $expLast[1] : '';
-	
+
 		$params = array();
-
-
 		foreach( $expUri as $k => $v ) {
 
 			$v1 = $v;
@@ -128,6 +126,10 @@ class Router extends Singleton {
 		return true;
 	}
 
+	protected function params() {
+		return $this->pathArr;
+	}
+
 	protected function route( $uri, $callback ) {
 		$this->uri[] = $uri;
 		$this->callback[] = $callback;
@@ -158,7 +160,7 @@ class Router extends Singleton {
 	private function run( $uri, $callback, $wa, $extension ) {
 
 		if( $this->checkUrl( $uri, $wa, $extension ) ) {
-			
+
 			if( is_callable( $callback ) ) {
 				$ret = call_user_func_array( $callback, $this->params );
 			} else {

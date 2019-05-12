@@ -18,7 +18,8 @@
                       <tbody>
 
                         <?
-                        $this->loop->find(function( $fetch ) {
+                        $this->loop->find(function( $res ) {
+                        $fetch = $res->item;
                         ?>
                         <tr>
                           <td><?=$fetch['name']?></td>

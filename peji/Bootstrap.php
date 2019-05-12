@@ -3,7 +3,7 @@ namespace Peji;
 
 class Bootstrap extends Singleton {
 
-	function start( $dir, $controller, $action, $id ) {
+	function start( $dir, $controller, $action, $id, $params = [] ) {
 
 		$nController = "App\Controller\\".ucfirst($dir)."\\{$controller}Controller";
 
@@ -16,10 +16,12 @@ class Bootstrap extends Singleton {
 		$get['post'] = Request::post();
 		$get['server'] = Request::server();
 
-		
-
 		if( class_exists( $nController ) ) {
 			$nControllerObject = new $nController();
+			if( @$nControllerObject->toIndex ) {
+				$action = 'index';
+				$get['action'] = 'index';
+			}
 			foreach( $get as $k => $v ) {
 				$nControllerObject->setKey( $k, $v );
 			}
@@ -30,12 +32,16 @@ class Bootstrap extends Singleton {
 		App::call( $nControllerObject, 'beforeApp' ) ;
 		App::call( $nControllerObject, 'before' ) ;
 
-		if( App::call( $nControllerObject, $action, [ $id ] ) ) {
+		if( App::call( $nControllerObject, $action, [ $id, $params ] ) ) {
 	
 			$get += (array)$nControllerObject->get();
 
 			View::set( $get );
-			View::render( $dir.'/base/'.(isset($nControllerObject->layout)?$nControllerObject->layout:'index') );
+			if( ! @$nControllerObject->disableView ) {
+
+				View::render( $dir.'/base/'.(isset($nControllerObject->layout)?$nControllerObject->layout:'index') );
+			}
+
 			App::call( $nControllerObject, 'after' ) ;
 
 			return true;

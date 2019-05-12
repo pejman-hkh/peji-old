@@ -4,6 +4,8 @@ namespace Peji\DB;
 class pdoWrapper {
 
 	private $statment, $db;
+	public $belongs = [];
+	public $hasMany = [];
 
 	public function setAttr( $array ) {
 		foreach( $array as $k => $v ) {

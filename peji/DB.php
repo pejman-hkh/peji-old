@@ -13,18 +13,37 @@ class DB extends Singleton {
 	protected function connect( $host, $username, $password, $dbName ) {
 		$this->db->connect( $host, $username, $password, $dbName );
 	}
+
+	protected function belongTo( $belong ) {
+		$this->belongs[] = $belong;
+		$this->db->belongs = $this->belongs;
+	}
+	
+	protected function hasMany( $hasMany ) {
+		$this->hasMany[] = $hasMany;
+		$this->db->hasMany = $this->hasMany;
+	}
 	
 	protected function setAttr( $attr ) {
 		$this->db->setAttr( $attr );
 	}
 
-	protected function select( $tname ) {
-		$this->QB->select( $tname );
+	protected function select( $tname, $field = '*' ) {
+		$this->QB->select( $tname, $field );
 		return $this;
 	}
 
 	protected function sql( $sql ) {
 		$this->QB->sql( $sql );
+		return $this;
+	}
+
+	public function query( $sql, $bind = [] ) {
+		return $this->addSql( $sql )->bind( $bind );
+	}
+
+	public function addSql( $sql ) {
+		$this->QB->sql( $this->QB->getSql().' '.$sql );
 		return $this;
 	}
 
@@ -65,6 +84,11 @@ class DB extends Singleton {
 		return $this->run();
 	}
 
+	public function bind( $array = [] ) {
+		$this->QB->setParams( $array );
+		return $this;
+	}
+
 	public function find( $array = [] ) {
 		$this->QB->setParams( $array );
 
@@ -83,7 +107,6 @@ class DB extends Singleton {
 	}
 
 	private function run() {
-
 		return $this->db->prepare( $this->QB->getSql() )->execute( $this->QB->getParams() );
 	}
 
@@ -100,6 +123,7 @@ class DB extends Singleton {
 		$data["start"] = ( $page - $limit ) <= 0 ? 1 : $page - $limit;
 		$data["end"] = ( $page + $limit >= $nP ) ? $nP : $page + $limit;
 		$data["count"] = $count;
+		$data["endPage"] = ceil($count / $number);
 		$data["next"] = $page >= ceil( $count / $number ) ? $page : $page + 1;
 		$data["prev"] = $page <= 1 ? 1 : $page - 1;
 

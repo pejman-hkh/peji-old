@@ -2,8 +2,8 @@
 
 return [
 	'host' => 'localhost',
-	'username' => 'phpmyadmin',
-	'password' => '123456',
+	'username' => 'peji',
+	'password' => '12c456789',
 	'db' => 'PejiCms'
 ];
 

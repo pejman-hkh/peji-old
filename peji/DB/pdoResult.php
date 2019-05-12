@@ -1,5 +1,6 @@
 <?php
 namespace Peji\DB;
+use Peji\ResultSet;
 
 class pdoResult  {
 	private $statment, $wrapper, $sql;
@@ -24,8 +25,26 @@ class pdoResult  {
 	}
 
 	public function find( $callback ) {
+		$std = new Resultset();
 		while( $fetch = $this->next() ) {
-			$callback( $fetch, $this->wrapper );
+			$std->item = $fetch;
+			foreach( $this->wrapper->belongs as $k => $v ) {
+
+				$e = explode("\\", $v[1]);
+				$name = $e[count( $e ) - 1 ];
+
+				$std->$name(@$v[1]::sql("WHERE $v[0] = ? ", [ $fetch[ $v[2] ] ])->findOne());
+			}
+
+			foreach( $this->wrapper->hasMany as $k => $v ) {
+
+				$e = explode("\\", $v[1]);
+				$name = $e[count( $e ) - 1 ];
+
+				$std->$name(@$v[1]::sql("WHERE $v[0] = ? ", [ $fetch[ $v[2] ] ])->row());
+			}
+
+			$callback( $std, $this->wrapper );
 		}
 	}
 
